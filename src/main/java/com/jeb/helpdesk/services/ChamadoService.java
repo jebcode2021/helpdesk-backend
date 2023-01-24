@@ -22,34 +22,32 @@ import com.jeb.helpdesk.services.exceptions.ObjectnotFoundException;
 public class ChamadoService {
 
 	@Autowired
-	private ChamadoRepository chamadoRepository;
-
+	private ChamadoRepository repository;
 	@Autowired
 	private TecnicoService tecnicoService;
-	
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	public Chamado findById(Integer id) {
-		Optional<Chamado> obj = chamadoRepository.findById(id);
+		Optional<Chamado> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! ID: " + id));
 	}
 
-	public List<Chamado> findById() {
-		return chamadoRepository.findAll();
+	public List<Chamado> findAll() {
+		return repository.findAll();
 	}
 
-	public Chamado create(@Valid ChamadoDTO objDTO) {
-		return chamadoRepository.save(newChamado(objDTO));
+	public Chamado create(ChamadoDTO obj) {
+		return repository.save(newChamado(obj));
 	}
 
-	public Chamado update(Integer id, ChamadoDTO objDTO) {
+	public Chamado update(Integer id, @Valid ChamadoDTO objDTO) {
 		objDTO.setId(id);
 		Chamado oldObj = findById(id);
 		oldObj = newChamado(objDTO);
-		return chamadoRepository.save(oldObj);
+		return repository.save(oldObj);
 	}
-	
+
 	private Chamado newChamado(ChamadoDTO obj) {
 		Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
 		Cliente cliente = clienteService.findById(obj.getCliente());
@@ -71,4 +69,21 @@ public class ChamadoService {
 		chamado.setObservacoes(obj.getObservacoes());
 		return chamado;
 	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

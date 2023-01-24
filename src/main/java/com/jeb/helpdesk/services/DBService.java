@@ -18,19 +18,17 @@ import com.jeb.helpdesk.repositories.PessoaRepository;
 @Service
 public class DBService {
 
-	@Autowired 
+	@Autowired
 	private ChamadoRepository chamadoRepository;
-	
-	@Autowired 
+	@Autowired
 	private PessoaRepository pessoaRepository;
-	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
+
 	public void instanciaDB() {
-		
+
 		Tecnico tec1 = new Tecnico(null, "Valdir Cezar", "550.482.150-95", "valdir@mail.com", encoder.encode("123"));
-		tec1.addPerfils(Perfil.ADMIN);
+		tec1.addPerfil(Perfil.ADMIN);
 		Tecnico tec2 = new Tecnico(null, "Richard Stallman", "903.347.070-56", "stallman@mail.com", encoder.encode("123"));
 		Tecnico tec3 = new Tecnico(null, "Claude Elwood Shannon", "271.068.470-54", "shannon@mail.com", encoder.encode("123"));
 		Tecnico tec4 = new Tecnico(null, "Tim Berners-Lee", "162.720.120-39", "lee@mail.com", encoder.encode("123"));

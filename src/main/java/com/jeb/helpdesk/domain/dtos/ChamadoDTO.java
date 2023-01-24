@@ -3,43 +3,39 @@ package com.jeb.helpdesk.domain.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jeb.helpdesk.domain.Chamado;
 
-public class ChamadoDTO implements Serializable{
+public class ChamadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Integer id;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAbertura = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
-	@NotNull(message = "o campo PRIORIDADE é requerido")
+	@NotNull(message = "O campo PRIORIDADE é requerido")
 	private Integer prioridade;
-	@NotNull(message = "o campo STATUS é requerido")
+	@NotNull(message = "O campo STATUS é requerido")
 	private Integer status;
-	@NotNull(message = "o campo TÍTULO é requerido")
+	@NotNull(message = "O campo TITULO é requerido")
 	private String titulo;
-	@NotNull(message = "o campo OBSERVAÇÕES é requerido")
+	@NotNull(message = "O campo OBSERVAÇÕES é requerido")
 	private String observacoes;
-	@NotNull(message = "o campo TÉCNICO é requerido")
+	@NotNull(message = "O campo TECNICO é requerido")
 	private Integer tecnico;
-	@NotNull(message = "o campo CLIENTE é requerido")
+	@NotNull(message = "O campo CLIENTE é requerido")
 	private Integer cliente;
 	private String nomeTecnico;
 	private String nomeCliente;
-	
+
 	public ChamadoDTO() {
 		super();
 	}
 
 	public ChamadoDTO(Chamado obj) {
-		super();
 		this.id = obj.getId();
 		this.dataAbertura = obj.getDataAbertura();
 		this.dataFechamento = obj.getDataFechamento();
@@ -49,8 +45,8 @@ public class ChamadoDTO implements Serializable{
 		this.observacoes = obj.getObservacoes();
 		this.tecnico = obj.getTecnico().getId();
 		this.cliente = obj.getCliente().getId();
-		this.nomeTecnico = obj.getCliente().getNome();
-		this.nomeCliente = obj.getTecnico().getNome();
+		this.nomeCliente = obj.getCliente().getNome();
+		this.nomeTecnico = obj.getTecnico().getNome();
 	}
 
 	public Integer getId() {
@@ -140,6 +136,5 @@ public class ChamadoDTO implements Serializable{
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
-	
-	
+
 }

@@ -1,9 +1,9 @@
 package com.jeb.helpdesk.domain.enums;
 
 public enum Prioridade {
-	
-	BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
 
+	BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
+	
 	private Integer codigo;
 	private String descricao;
 	
@@ -31,6 +31,6 @@ public enum Prioridade {
 			}
 		}
 		
-		throw new IllegalArgumentException("Prioridade inválido");
+		throw new IllegalArgumentException("Prioridade inválida");
 	}
 }

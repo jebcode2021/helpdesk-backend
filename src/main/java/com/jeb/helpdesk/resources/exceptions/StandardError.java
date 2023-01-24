@@ -2,15 +2,15 @@ package com.jeb.helpdesk.resources.exceptions;
 
 import java.io.Serializable;
 
-public class StandardError implements Serializable{
+public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long timestamp;
 	private Integer status;
 	private String error;
 	private String message;
 	private String path;
-	
+
 	public StandardError() {
 		super();
 	}
@@ -63,6 +63,5 @@ public class StandardError implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
-	
+
 }
