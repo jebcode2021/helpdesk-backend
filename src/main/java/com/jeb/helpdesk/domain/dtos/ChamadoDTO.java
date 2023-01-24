@@ -3,12 +3,12 @@ package com.jeb.helpdesk.domain.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jeb.helpdesk.domain.Chamado;
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.NotNull;
 
 public class ChamadoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;

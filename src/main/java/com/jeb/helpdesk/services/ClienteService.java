@@ -3,7 +3,10 @@ package com.jeb.helpdesk.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jeb.helpdesk.domain.Cliente;
@@ -14,8 +17,6 @@ import com.jeb.helpdesk.repositories.PessoaRepository;
 import com.jeb.helpdesk.services.exceptions.DataIntegrifyViolationException;
 import com.jeb.helpdesk.services.exceptions.ObjectnotFoundException;
 
-import jakarta.validation.Valid;
-
 @Service
 public class ClienteService {
 	
@@ -24,6 +25,9 @@ public class ClienteService {
 	
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	public Cliente findById(Integer id) {
 		Optional<Cliente> obj = repository.findById(id);
@@ -43,6 +47,7 @@ public class ClienteService {
 	
 	public Cliente update(Integer id, @Valid ClienteDTO objDTO) {
 		objDTO.setId(id);
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		Cliente oldObj = findById(id);
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Cliente(objDTO);
